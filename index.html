@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tamagna Mondal | Data Scientist & B.Tech Student</title>
+  <meta name="description" content="Portfolio of Tamagna Mondal - Data Scientist and B.Tech CSE student at VIT-AP University. Specializing in Python, Machine Learning, and Data Analysis." />
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@100..800&display=swap" rel="stylesheet" />
+  
+  <!-- Styling -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="grid-bg">
+
+  <!-- Edit Mode Banner -->
+  <div class="edit-mode-banner">
+    [EDIT ACTIVE] CHANGES SAVED LOCALLY. EXPORT CONFIG TO MAKE PERMANENT.
+  </div>
+
+  <!-- Navigation Bar -->
+  <nav id="navbar">
+    <div class="max-w-container nav-content">
+      <a class="logo" onclick="window.scrollTo(0,0)">
+        <div class="logo-icon">
+          <div class="logo-inner-1"></div>
+          <div class="logo-inner-2"></div>
+          <div class="logo-dot"></div>
+        </div>
+        <span id="nav-logo-text">TM<span style="color: var(--accent-cyan)">.nav</span></span>
+      </a>
+      
+      <div class="nav-links">
+        <button class="nav-link" onclick="document.getElementById('about').scrollIntoView()"><span>01.</span>About</button>
+        <button class="nav-link" onclick="document.getElementById('skills').scrollIntoView()"><span>02.</span>Skills</button>
+        <button class="nav-link" onclick="document.getElementById('projects').scrollIntoView()"><span>03.</span>Projects</button>
+        <button class="nav-link" onclick="document.getElementById('certifications').scrollIntoView()"><span>04.</span>Certifications</button>
+        <button class="nav-link" onclick="document.getElementById('contact').scrollIntoView()"><span>05.</span>Contact</button>
+        
+        <!-- Admin Settings Toggle -->
+        <button id="admin-toggle-btn" class="admin-badge-btn" onclick="handleAdminToggle()">
+          <svg style="width: 14px; height: 14px; fill: currentColor;" viewBox="0 0 24 24">
+            <path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.43-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"></path>
+          </svg>
+          <span id="admin-btn-text">ADMIN</span>
+        </button>
+      </div>
+
+      <div class="nav-right-status">
+        <div class="status-dot"></div>
+        <span id="telemetry-status">ONLINE</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="hero">
+    <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(0, 212, 255, 0.05) 0%, transparent 70%)"></div>
+    <div class="absolute top-20 left-6 sm:left-10 font-mono text-xs text-[#00d4ff]/30 select-none">
+      <div>LAT: <span id="telemetry-lat">16.5062° N</span></div>
+      <div>LON: <span id="telemetry-lon">80.6480° E</span></div>
+      <div class="mt-1 text-[#00d4ff]/20" id="telemetry-univ">VIT-AP UNIVERSITY</div>
+    </div>
+    
+    <div class="absolute top-20 right-6 sm:right-10 font-mono text-xs text-[#00d4ff]/30 text-right select-none">
+      <div>ALT: 0.0m</div>
+      <div>STATUS: ACTIVE</div>
+      <div class="mt-1 text-[#00d4ff]/20">WAYPOINT_001</div>
+    </div>
+    
+    <div class="max-w-container hero-content">
+      <div class="hero-tag">
+        <div class="tag-dot"></div>
+        <span id="hero-system-version">SYSTEM_ONLINE // PORTFOLIO_v1.0</span>
+      </div>
+      
+      <div class="editable-area" id="edit-profile-trigger">
+        <div class="edit-trigger-overlay">
+          <button class="edit-action-btn" onclick="openProfileModal(event)">
+            <svg style="width:12px;height:12px;fill:currentColor" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c0.39-0.39 0.39-1.02 0-1.41l-2.34-2.34c-0.39-0.39-1.02-0.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"></path></svg>
+            EDIT BIO
+          </button>
+        </div>
+        <h1 class="hero-title">
+          <span class="role-prefix">&gt; IDENTIFY</span>
+          <span id="hero-first-name">Tamagna</span>
+          <span class="name-last" id="hero-last-name">Mondal</span>
+        </h1>
+        
+        <div class="hero-subtitle">
+          <span class="role-label">role: </span>
+          <span class="role-value" id="hero-title-role">Data Scientist & B.Tech Student</span>
+        </div>
+      </div>
+      
+      <div class="hero-stats-row">
+        <div class="stat-item"><div class="stat-dot cyan"></div><span id="hero-stat-coords">16.5062° N, 80.6480° E</span></div>
+        <div class="stat-item"><div class="stat-dot green"></div><span id="hero-stat-university">VIT-AP University</span></div>
+        <div class="stat-item"><div class="stat-dot orange"></div><span id="hero-stat-degree">B.Tech CSE</span></div>
+      </div>
+      
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="document.getElementById('projects').scrollIntoView()">
+          <svg style="width: 14px; height:14px;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
+          </svg>
+          VIEW PROJECTS
+        </button>
+        <button class="btn btn-outline" onclick="document.getElementById('contact').scrollIntoView()">
+          <svg style="width: 14px; height:14px;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+          </svg>
+          CONTACT ME
+        </button>
+      </div>
+      
+      <div class="hero-dashboard-stats">
+        <div class="dashboard-stat-box">
+          <div class="stat-num" id="stat-count-sections">5</div>
+          <div class="stat-label">Waypoints</div>
+          <div class="stat-desc">sections</div>
+        </div>
+        <div class="dashboard-stat-box">
+          <div class="stat-num" id="stat-count-skills">11</div>
+          <div class="stat-label">Skills</div>
+          <div class="stat-desc">mapped</div>
+        </div>
+        <div class="dashboard-stat-box">
+          <div class="stat-num" id="stat-count-projects">3</div>
+          <div class="stat-label">Projects</div>
+          <div class="stat-desc">completed</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section-wrapper">
+    <div class="section-telemetry">
+      <div>WAYPOINT_002</div>
+      <div>SECTOR: ABOUT</div>
+    </div>
+    
+    <div class="max-w-container">
+      <div class="section-header">
+        <h2 class="section-title">About</h2>
+        <div class="section-header-line"></div>
+      </div>
+      
+      <div class="about-grid">
+        <!-- Interactive Terminal Bio Card -->
+        <div class="editable-area" id="edit-bio-area">
+          <div class="edit-trigger-overlay">
+            <button class="edit-action-btn" onclick="openProfileModal(event)">
+              <svg style="width:12px;height:12px;fill:currentColor" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c0.39-0.39 0.39-1.02 0-1.41l-2.34-2.34c-0.39-0.39-1.02-0.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"></path></svg>
+              EDIT TEXT
+            </button>
+          </div>
+          
+          <div class="card-dark" style="padding: 2rem; position: relative;">
+            <div class="bio-card-header">
+              <div class="bio-dot red"></div>
+              <div class="bio-dot yellow"></div>
+              <div class="bio-dot green"></div>
+              <span class="bio-filename">bio.txt</span>
+            </div>
+            
+            <div class="bio-body">
+              <div class="cli-line">
+                <span class="cli-prompt">$ </span><span class="cli-cmd">cat</span> about.md
+              </div>
+              <p class="bio-text" id="about-bio-text">
+                Loading bio details...
+              </p>
+              <div class="cli-line">
+                <span class="cli-prompt">$ </span><span style="color: var(--text-muted)">status: </span><span class="cli-cmd" id="about-status">actively learning & building</span><span style="color: var(--accent-cyan); animation: pulseGlow 1s infinite">_</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Quick Info Blocks -->
+        <div class="about-bullets" id="profile-info-blocks">
+          <!-- Dynamically Rendered Quick Stats -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="section-wrapper">
+    <div class="section-telemetry">
+      <div>WAYPOINT_003</div>
+      <div>SECTOR: SKILLS</div>
+    </div>
+    
+    <div class="max-w-container">
+      <div class="section-header">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="section-header-line"></div>
+      </div>
+      
+      <!-- Skills Container -->
+      <div class="skills-grid" id="skills-container">
+        <!-- Rendered Dynamically by JS -->
+      </div>
+      
+      <div class="skills-total-count">
+        <div class="skills-count-divider"></div>
+        <div class="skills-count-text">TOTAL: <span id="skills-catalogued-num">0</span> SKILLS CATALOGUED</div>
+        <div class="skills-count-divider right"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="section-wrapper">
+    <div class="section-telemetry">
+      <div>WAYPOINT_004</div>
+      <div>SECTOR: PROJECTS</div>
+    </div>
+    
+    <div class="max-w-container">
+      <div class="section-header">
+        <h2 class="section-title">Projects</h2>
+        <div class="section-header-line"></div>
+      </div>
+      
+      <!-- Projects Grid -->
+      <div class="projects-grid" id="projects-container">
+        <!-- Rendered Dynamically by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications Section -->
+  <section id="certifications" class="section-wrapper">
+    <div class="section-telemetry">
+      <div>WAYPOINT_005</div>
+      <div>SECTOR: CERTIFICATIONS</div>
+    </div>
+    
+    <div class="max-w-container">
+      <div class="section-header">
+        <h2 class="section-title">Certifications</h2>
+        <div class="section-header-line"></div>
+      </div>
+      
+      <!-- Certifications Grid -->
+      <div class="certs-grid" id="certs-container">
+        <!-- Rendered Dynamically by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section-wrapper">
+    <div class="section-telemetry">
+      <div>WAYPOINT_006</div>
+      <div>SECTOR: CONTACT</div>
+    </div>
+    
+    <div class="max-w-container">
+      <div class="section-header">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="section-header-line"></div>
+      </div>
+      
+      <div class="contact-grid">
+        <!-- Left Column: Info Cards -->
+        <div class="contact-info-col">
+          <div class="editable-area" id="contact-info-editable">
+            <div class="edit-trigger-overlay">
+              <button class="edit-action-btn" onclick="openProfileModal(event)">
+                <svg style="width:12px;height:12px;fill:currentColor" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c0.39-0.39 0.39-1.02 0-1.41l-2.34-2.34c-0.39-0.39-1.02-0.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"></path></svg>
+                EDIT CONTACT INFO
+              </button>
+            </div>
+            
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+              <!-- Email Card -->
+              <div class="card-dark contact-method-card email-theme">
+                <div class="contact-icon-box">✉</div>
+                <div class="flex-grow-1" style="min-width: 0;">
+                  <div class="contact-label">Email</div>
+                  <a href="#" id="contact-email-link" class="contact-value-link">loading...</a>
+                </div>
+              </div>
+              
+              <!-- Phone Card -->
+              <div class="card-dark contact-method-card phone-theme">
+                <div class="contact-icon-box">☎</div>
+                <div class="flex-grow-1" style="min-width: 0;">
+                  <div class="contact-label">Phone</div>
+                  <a href="#" id="contact-phone-link" class="contact-value-link green-val">loading...</a>
+                </div>
+              </div>
+              
+              <!-- Location details and map -->
+              <div class="card-dark contact-map-card">
+                <div class="map-header">
+                  <svg style="width:14px;height:14px;fill:currentColor;" viewBox="0 0 24 24">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path>
+                  </svg>
+                  <span>CURRENT NODE LOCATION</span>
+                </div>
+                
+                <div class="map-canvas-mock">
+                  <div class="map-ping-container">
+                    <div class="map-ping-dot"></div>
+                    <div class="map-ping-ring"></div>
+                  </div>
+                </div>
+                
+                <div class="map-coordinates">
+                  <span id="coord-lat-val">16.5062° N</span>, <span id="coord-lon-val">80.6480° E</span>
+                  <div style="color: var(--text-muted); font-size: 0.65rem; margin-top: 0.25rem;" id="coord-loc-name">// Amaravati, AP, India</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Right Column: Terminal Contact Form -->
+        <div class="card-dark form-card">
+          <div class="form-terminal-header">
+            <div class="bio-dot red"></div>
+            <div class="bio-dot yellow"></div>
+            <div class="bio-dot green"></div>
+            <span class="form-terminal-title">send_message.sh</span>
+          </div>
+          
+          <form class="contact-form" id="portfolio-contact-form" onsubmit="handleContactSubmit(event)">
+            <div class="form-group">
+              <label class="form-label" for="form-name"><span>$ </span>name</label>
+              <input type="text" id="form-name" class="form-input" placeholder="Enter identification name..." required />
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label" for="form-email"><span>$ </span>email</label>
+              <input type="email" id="form-email" class="form-input" placeholder="Enter transmission email..." required />
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label" for="form-message"><span>$ </span>message</label>
+              <textarea id="form-message" class="form-input form-textarea" rows="4" placeholder="Type communication payload..." required></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary" style="justify-content: center; width: 100%;">
+              <svg style="width: 14px; height: 14px;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+              </svg>
+              SEND MESSAGE
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="max-w-container">
+      <div class="footer-content">
+        <div class="footer-logo-col">
+          <div class="logo-icon">
+            <div class="logo-inner-1"></div>
+            <div class="logo-dot"></div>
+          </div>
+          <div>
+            <div class="footer-logo-text" id="footer-profile-name">Tamagna Mondal</div>
+            <div class="footer-logo-sub" id="footer-profile-title">Data Scientist & B.Tech Student</div>
+          </div>
+        </div>
+        
+        <div class="footer-meta-center">
+          <div id="footer-coords">16.5062° N, 80.6480° E</div>
+          <div class="text-muted" id="footer-univ-name">VIT-AP University, Amaravati</div>
+        </div>
+        
+        <div class="footer-meta-right">
+          <div>© <span class="copyright-year" id="footer-year">2026</span> <span id="footer-copyright-name">Tamagna Mondal</span></div>
+          <div class="text-muted">All rights reserved</div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom-bar">
+        <div class="footer-status-box">
+          <div class="status-dot"></div>
+          <span>SYSTEM ONLINE</span>
+        </div>
+        <div class="footer-tech">
+          Built with <span>HTML5</span> & <span>Vanilla CSS</span>
+        </div>
+        <div>
+          v1.1.0 // portfolio-cms
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top Button -->
+  <button id="scroll-top-btn" class="scroll-top-btn" onclick="window.scrollTo(0,0)">▲</button>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- MODALS -->
+
+  <!-- 1. PIN AUTHENTICATION MODAL -->
+  <div class="modal-overlay" id="pin-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title">AUTHENTICATION REQUIRED</div>
+        <button class="modal-close-btn" onclick="closeModal('pin-modal')">×</button>
+      </div>
+      <div class="modal-body">
+        <form id="pin-form" onsubmit="verifyAdminPIN(event)">
+          <div class="form-group">
+            <label class="form-label" for="admin-pin"><span>$ </span>enter_admin_pin</label>
+            <input type="password" id="admin-pin" class="form-input" placeholder="Enter PIN (Default: 1234)" required />
+            <div style="font-size: 0.65rem; color: var(--text-muted); margin-top: 0.25rem;">
+              * Note: Default PIN is 1234. Leave field blank/incorrect to fail authorization.
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary" style="justify-content: center;">AUTHORIZE</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. PROFILE EDIT MODAL -->
+  <div class="modal-overlay" id="profile-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title">EDIT PROFILE DATA</div>
+        <button class="modal-close-btn" onclick="closeModal('profile-modal')">×</button>
+      </div>
+      <div class="modal-body">
+        <form id="profile-form" onsubmit="saveProfileData(event)">
+          <div class="form-group">
+            <label class="form-label"><span>$ </span>name</label>
+            <input type="text" id="edit-prof-name" class="form-input" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>$ </span>role_title</label>
+            <input type="text" id="edit-prof-title" class="form-input" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>$ </span>about_bio</label>
+            <textarea id="edit-prof-bio" class="form-input" rows="5" required></textarea>
+          </div>
+          
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label"><span>$ </span>latitude</label>
+              <input type="text" id="edit-prof-lat" class="form-input" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label"><span>$ </span>longitude</label>
+              <input type="text" id="edit-prof-lon" class="form-input" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label"><span>$ </span>location_name</label>
+            <input type="text" id="edit-prof-locname" class="form-input" required />
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label"><span>$ </span>university</label>
+              <input type="text" id="edit-prof-univ" class="form-input" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label"><span>$ </span>degree_code</label>
+              <input type="text" id="edit-prof-degree" class="form-input" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label"><span>$ </span>degree_detail</label>
+            <input type="text" id="edit-prof-degreedetail" class="form-input" required />
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label"><span>$ </span>focus_area</label>
+              <input type="text" id="edit-prof-focus" class="form-input" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label"><span>$ </span>focus_detail</label>
+              <input type="text" id="edit-prof-focusdetail" class="form-input" required />
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label"><span>$ </span>email</label>
+              <input type="email" id="edit-contact-email" class="form-input" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label"><span>$ </span>phone</label>
+              <input type="text" id="edit-contact-phone" class="form-input" required />
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label"><span>$ </span>github_url</label>
+              <input type="url" id="edit-contact-github" class="form-input" />
+            </div>
+            <div class="form-group">
+              <label class="form-label"><span>$ </span>linkedin_url</label>
+              <input type="url" id="edit-contact-linkedin" class="form-input" />
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="justify-content: center; margin-top: 1rem;">SAVE CHANGES</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. SKILL EDIT/ADD MODAL -->
+  <div class="modal-overlay" id="skill-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title" id="skill-modal-title">EDIT SKILL</div>
+        <button class="modal-close-btn" onclick="closeModal('skill-modal')">×</button>
+      </div>
+      <div class="modal-body">
+        <form id="skill-form" onsubmit="saveSkillData(event)">
+          <input type="hidden" id="edit-skill-id" />
+          
+          <div class="form-group">
+            <label class="form-label"><span>$ </span>category_group</label>
+            <input type="text" id="edit-skill-cat" class="form-input" placeholder="e.g. Languages, Data Science" required />
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label"><span>$ </span>skill_name</label>
+            <input type="text" id="edit-skill-name" class="form-input" placeholder="e.g. Python" required />
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label"><span>$ </span>proficiency_level (0 - 100%)</label>
+            <input type="number" id="edit-skill-level" class="form-input" min="0" max="100" required />
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="justify-content: center;">SAVE SKILL</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. PROJECT EDIT/ADD MODAL -->
+  <div class="modal-overlay" id="project-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title" id="project-modal-title">EDIT PROJECT</div>
+        <button class="modal-close-btn" onclick="closeModal('project-modal')">×</button>
+      </div>
+      <div class="modal-body">
+        <form id="project-form" onsubmit="saveProjectData(event)">
+          <input type="hidden" id="edit-proj-id" />
+          
+          <div class="form-group">
+            <label class="form-label"><span>$ </span>project_title</label>
+            <input type="text" id="edit-proj-title" class="form-input" placeholder="Project Name" required />
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label"><span>$ </span>description</label>
+            <textarea id="edit-proj-desc" class="form-input" rows="4" placeholder="Brief summary of what was accomplished" required></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label"><span>$ </span>tags (comma separated)</label>
+            <input type="text" id="edit-proj-tags" class="form-input" placeholder="Python, ML, Git" required />
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label"><span>$ </span>github_repo_url</label>
+              <input type="url" id="edit-proj-github" class="form-input" placeholder="https://github.com/..." />
+            </div>
+            <div class="form-group">
+              <label class="form-label"><span>$ </span>live_deployment_url</label>
+              <input type="url" id="edit-proj-live" class="form-input" placeholder="https://example.com" />
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="justify-content: center; margin-top: 0.5rem;">SAVE PROJECT</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. CERTIFICATION EDIT/ADD MODAL -->
+  <div class="modal-overlay" id="cert-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title" id="cert-modal-title">EDIT CERTIFICATION</div>
+        <button class="modal-close-btn" onclick="closeModal('cert-modal')">×</button>
+      </div>
+      <div class="modal-body">
+        <form id="cert-form" onsubmit="saveCertData(event)">
+          <input type="hidden" id="edit-cert-id" />
+          
+          <div class="form-group">
+            <label class="form-label"><span>$ </span>certification_name</label>
+            <input type="text" id="edit-cert-name" class="form-input" required />
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label"><span>$ </span>issuing_organization</label>
+            <input type="text" id="edit-cert-issuer" class="form-input" placeholder="e.g. Stanford University" required />
+          </div>
+          
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label"><span>$ </span>issue_date (YYYY-MM)</label>
+              <input type="text" id="edit-cert-date" class="form-input" placeholder="e.g. 2026-03" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label"><span>$ </span>credential_link</label>
+              <input type="url" id="edit-cert-link" class="form-input" placeholder="https://..." />
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="justify-content: center; margin-top: 0.5rem;">SAVE CERTIFICATION</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. CONTACT MESSAGES MODAL -->
+  <div class="modal-overlay" id="messages-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title">TRANSMITTED MESSAGES QUEUE</div>
+        <button class="modal-close-btn" onclick="closeModal('messages-modal')">×</button>
+      </div>
+      <div class="modal-body" id="messages-queue-container" style="max-height: 60vh;">
+        <!-- Rendered by JS -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" style="border-color: var(--accent-red); color: var(--accent-red);" onclick="clearAllMessages()">CLEAR QUEUE</button>
+        <button class="btn btn-outline" onclick="closeModal('messages-modal')">CLOSE</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. CONFIG/EXPORT/IMPORT MODAL -->
+  <div class="modal-overlay" id="config-modal">
+    <div class="modal-card" style="max-width: 600px;">
+      <div class="modal-header">
+        <div class="modal-title">DATA MANAGEMENT UTILITIES</div>
+        <button class="modal-close-btn" onclick="closeModal('config-modal')">×</button>
+      </div>
+      <div class="modal-body">
+        <div style="font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.5; color: var(--text-secondary); display: flex; flex-direction: column; gap: 1.5rem;">
+          <div>
+            <div style="color: var(--accent-cyan); font-weight: 700; margin-bottom: 0.5rem;">[1] EXPORT DATA AS BACKUP</div>
+            <p style="margin-bottom: 0.75rem;">Download your current modified portfolio configuration as a JSON file, or copy it to clipboard to paste directly into the <code style="color: var(--accent-green)">data.js</code> file to make it permanent.</p>
+            <div style="display: flex; gap: 0.75rem;">
+              <button class="btn btn-primary" onclick="exportDataToFile()">DOWNLOAD JSON</button>
+              <button class="btn btn-outline" onclick="copyDataToClipboard()">COPY CONFIG JSON</button>
+            </div>
+          </div>
+          
+          <hr style="border: 0; border-top: 1px solid rgba(0, 212, 255, 0.1);" />
+          
+          <div>
+            <div style="color: var(--accent-orange); font-weight: 700; margin-bottom: 0.5rem;">[2] IMPORT DATA FROM FILE</div>
+            <p style="margin-bottom: 0.75rem;">Select an exported JSON backup file to overwrite your current browser data settings.</p>
+            <input type="file" id="import-file-selector" style="display: none;" accept=".json" onchange="importDataFromFile(event)" />
+            <button class="btn btn-primary" style="border-color: var(--accent-orange); color: var(--accent-orange);" onclick="document.getElementById('import-file-selector').click()">CHOOSE JSON FILE</button>
+          </div>
+
+          <hr style="border: 0; border-top: 1px solid rgba(0, 212, 255, 0.1);" />
+
+          <div>
+            <div style="color: var(--accent-red); font-weight: 700; margin-bottom: 0.5rem;">[3] RESET DATA</div>
+            <p style="margin-bottom: 0.75rem;">Delete all browser local storage changes and restore the website content back to the code default configurations.</p>
+            <button class="btn btn-outline" style="border-color: var(--accent-red); color: var(--accent-red);" onclick="resetDataToDefaults()">RESTORE DEFAULT CONFIG</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
