@@ -1,7 +1,18 @@
 // State Management
 let portfolioData = null;
 let isAdminMode = false;
-const ADMIN_PIN = "1234";
+
+// Hashed PIN for admin authentication (SHA-256 hash of 'tamagna2026')
+const HASHED_ADMIN_PIN = "ba8138f160dc03adf791db32b713fc97ad2415946a57665b4f98806adf111660";
+
+// Helper function to hash string to hex using Web Crypto API
+async function sha256(message) {
+  const msgBuffer = new TextEncoder().encode(message);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  return hashHex;
+}
 
 // Typewriter Effect Variables
 const rolesToCycle = [
@@ -444,11 +455,12 @@ function handleAdminToggle() {
   }
 }
 
-function verifyAdminPIN(event) {
+async function verifyAdminPIN(event) {
   event.preventDefault();
   const inputPin = document.getElementById("admin-pin").value;
+  const hashedInput = await sha256(inputPin);
   
-  if (inputPin === ADMIN_PIN) {
+  if (hashedInput === HASHED_ADMIN_PIN) {
     isAdminMode = true;
     closeModal("pin-modal");
     document.getElementById("admin-pin").value = "";
